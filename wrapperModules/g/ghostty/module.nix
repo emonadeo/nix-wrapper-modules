@@ -84,7 +84,9 @@ in
     ];
     wrapperVariants.ghostty = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
       wrapperImplementation = "binary";
-      exePath = "Applications/Ghostty.app/Contents/MacOS/ghostty";
+      mirror = false;
+      package = placeholder "out";
+      exePath = lib.removePrefix "/" config.wrapperPaths.relPath;
       binDir = "Applications/Ghostty.app/Contents/MacOS";
     };
     # Ghostty has no environment variable for specifying a config file, so CLI
